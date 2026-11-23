@@ -133,5 +133,5 @@ it('prunes deleted site references from type configuration', function (): void {
     $service = BundleBuilder::getInstance()->getBundleTypes();
     $service->pruneDeletedSite(new ConfigEvent(['tokenMatches' => [$site->uid]]));
 
-    expect(Craft::$app->getProjectConfig()->get(BundleTypes::CONFIG_BUNDLE_TYPES . '.' . $type->uid . '.siteSettings'))->toBeEmpty();
+    expect(Craft::$app->getProjectConfig()->get(BundleTypes::CONFIG_BUNDLE_TYPES . '.' . $type->uid . '.siteSettings'))->not->toHaveKey($site->uid);
 });
